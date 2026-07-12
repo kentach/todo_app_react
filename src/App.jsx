@@ -4,6 +4,13 @@ import InputTodo from './components/InputTodo';
 import IncompleteTodoList from './components/IncompleteTodoList';
 import CompleteTodoList from './components/CompleteTodoList';
 
+const messageStyle = {
+  textAlign: "center",
+  fontSize: "14px",
+  fontFamily: "bold",
+  color:"red"
+}
+
 function App() {
   const [todoText, setTodoText] = useState("") // 入力された値を管理する
 
@@ -74,14 +81,20 @@ function App() {
       const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
       setIncompleteTodos(newIncompleteTodos);
     }
+
+    const MaxIncompleteTodo = incompleteTodos.length >= 5;
   
   return (
     <>
     <InputTodo 
       onClick={onClickAdd} 
       todoText={todoText} 
-      onChange={onChangeTodoText} 
-    /> 
+      onChange={onChangeTodoText}
+      disabled={MaxIncompleteTodo}
+    />
+    { MaxIncompleteTodo &&
+        <p style={messageStyle}>登録できるのは5つまでです。Todoを消化しましょう。</p>
+    }
     <IncompleteTodoList 
       todos={incompleteTodos} 
       onClickDelete={onClickDelete} 
