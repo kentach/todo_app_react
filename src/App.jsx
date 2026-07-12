@@ -42,6 +42,13 @@ function App() {
       setIncompleteTodos(newTodos);
       setTodoText("")
     }
+
+    const onClickDelete = (index) => {
+      const newTodos = [...incompleteTodos];
+      // spliceメソッドの引数（何番目にある、いくつ削除するか）
+      newTodos.splice(index, 1);
+      setIncompleteTodos(newTodos);
+    }
   
   return (
     <>
@@ -53,12 +60,12 @@ function App() {
     <section className="incomplete-area">
       <p className="todo-title">未完了のTODO</p>
       <ul id="incomplete-list">
-        {
-          incompleteTodos.map((todo) => (
+        { //何番目のアイテムか分かれば、配列から削除できるので、indexを引数として受け取る。
+          incompleteTodos.map((todo, index) => (
           <li key={todo.id}>
             <div className="todo-list">
               <p>{todo.title}</p>
-              <button className="button-style">削除</button>
+              <button onClick={() => onClickDelete(index)}className="button-style">削除</button>
               <button className="button-style">完了</button>
             </div>
           </li>
