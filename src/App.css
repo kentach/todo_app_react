@@ -9,35 +9,6 @@ body {
   width: 500px;
 }
 
-.input-area {
-  background-color: #c6e5d9;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-}
-
-input {
-  border-radius: 8px;
-  width: 85%;
-  border: none;
-  padding: 8px 16px;
-}
-
-.add-button {
-  border-radius: 8px;
-  border: none;
-  padding: 4px 16px;
-  margin: 0 2px;
-  cursor: pointer;
-}
-
-.add-button:hover {
-  background-color: #79a8a9;
-  color: #fff;
-}
-
 .button-style {
   all: unset;
   padding: 4px 8px;
@@ -72,7 +43,6 @@ input {
   font-weight: bold;
   color: #666;
   margin-top: 4px;
-
 }
 
 .incomplete-area ul, .complete-area ul {
