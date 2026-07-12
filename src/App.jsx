@@ -17,11 +17,11 @@ function App() {
 
   const [completeTodos, setCompleteTodos] = useState([
       { 
-        id: 1,
+        id: 3,
         title: "Todoアイテム1" 
       }, 
       {
-        id: 2,
+        id: 4,
         title: "Todoアイテム2"
       }
     ]);
@@ -38,16 +38,28 @@ function App() {
         title: todoText,
       };
 
-      const newTodos = [...incompleteTodos, newTodo]; //　[スプレッド構文で展開, 追加したい要素]
+      const newTodos = [...incompleteTodos, newTodo]; // [スプレッド構文で展開, 追加したい要素]
       setIncompleteTodos(newTodos);
       setTodoText("")
     }
 
     const onClickDelete = (index) => {
+      if(!confirm("Sure?")) return;
       const newTodos = [...incompleteTodos];
       // spliceメソッドの引数（何番目にある、いくつ削除するか）
       newTodos.splice(index, 1);
       setIncompleteTodos(newTodos);
+    }
+
+    // 完了ボタン
+    const onClickComplete = (index) => {
+      const newIncompleteTodos = [...incompleteTodos]; // 未完了のTodoリストを新しく作成
+      newIncompleteTodos.splice(index, 1); // 未完了のTodoリストから、押されたTodoアイテムのindexを一つ削除する
+      setIncompleteTodos(newIncompleteTodos); // 関数で更新する。
+
+      const newCompleteTodos = [...completeTodos, incompleteTodos[index]]; // 完了のTodoリストを新しく作成して、
+                                                                          // 未完了のTodoリストから押されたindexを追加する
+      setCompleteTodos(newCompleteTodos); // 関数で更新する。
     }
   
   return (
@@ -65,8 +77,8 @@ function App() {
           <li key={todo.id}>
             <div className="todo-list">
               <p>{todo.title}</p>
-              <button onClick={() => onClickDelete(index)}className="button-style">削除</button>
-              <button className="button-style">完了</button>
+              <button onClick={() => onClickDelete(index)} className="button-style">削除</button>
+              <button onClick={() => onClickComplete(index)} className="button-style">完了</button>
             </div>
           </li>
           ))
