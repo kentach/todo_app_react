@@ -25,7 +25,7 @@ input {
   padding: 8px 16px;
 }
 
-#add-button {
+.add-button {
   border-radius: 8px;
   border: none;
   padding: 4px 16px;
@@ -33,7 +33,7 @@ input {
   cursor: pointer;
 }
 
-#add-button:hover {
+.add-button:hover {
   background-color: #79a8a9;
   color: #fff;
 }
